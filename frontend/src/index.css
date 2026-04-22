@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Global resets ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #060c12;
+  color: #e8f4fc;
+  font-family: 'Barlow', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #0d1822; }
+::-webkit-scrollbar-thumb  { background: #1a2d42; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2a4057; }
+
+/* ── Leaflet map overrides ── */
+.leaflet-container {
+  background: #060c12 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+.leaflet-tile { filter: brightness(0.55) saturate(0.4) hue-rotate(195deg); }
+.leaflet-control-attribution { display: none !important; }
+.leaflet-control-zoom a {
+  background: #0d1822 !important;
+  border-color: #1a2d42 !important;
+  color: #00d4ff !important;
+}
+
+/* ── Utility classes ── */
+.card {
+  @apply bg-card border border-border rounded-lg;
+}
+.label {
+  @apply text-xs font-display font-semibold tracking-widest uppercase text-dim;
+}
+.val {
+  @apply font-mono text-hi;
+}
+.btn {
+  @apply font-display font-semibold tracking-wider uppercase text-sm px-4 py-2 rounded border transition-all duration-200;
+}
+.btn-primary {
+  @apply btn bg-cyan/10 border-cyan/40 text-cyan hover:bg-cyan/20 hover:border-cyan;
+}
+.btn-danger {
+  @apply btn bg-red/10 border-red/40 text-red hover:bg-red/20 hover:border-red;
+}
+.btn-ghost {
+  @apply btn bg-transparent border-border text-mid hover:border-dim hover:text-hi;
+}
+.input {
+  @apply bg-surface border border-border rounded px-3 py-2 text-hi font-mono text-sm
+         focus:outline-none focus:border-cyan/60 focus:ring-1 focus:ring-cyan/20 transition-all w-full;
+}
+
+/* ── Score band colors ── */
+.band-accept      { @apply text-green; }
+.band-review      { @apply text-yellow; }
+.band-investigate { @apply text-orange; }
+.band-reject      { @apply text-red; }
+
+.bg-band-accept      { @apply bg-green/10 border-green/30; }
+.bg-band-review      { @apply bg-yellow/10 border-yellow/30; }
+.bg-band-investigate { @apply bg-orange/10 border-orange/30; }
+.bg-band-reject      { @apply bg-red/10 border-red/30; }
+
+/* ── Scanline overlay ── */
+.scanline-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+}

@@ -102,7 +102,7 @@ def alert_predictive(session_id: str, device_id: str,
 def alert_hmac_rejected(device_id: str, received_hmac: str) -> None:
     subject = f"[OMNI-GUARDIAN] SECURITY — HMAC Rejected | {device_id}"
     body = (
-        f"A packet from device {device_id} failed HMAC verification.\n\n"
+        f"A packet from the device {device_id} failed HMAC verification.\n\n"
         f"  Received HMAC: {received_hmac}\n\n"
         f"This packet has been stored in the rejected_packets table "
         f"and flagged as COMPROMISED.\n"

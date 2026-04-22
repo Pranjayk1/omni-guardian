@@ -216,7 +216,7 @@ def _store_rejected(received_at: int, device_id: str,
 
 
 # ----------------------------------------------------------
-# Client setup — called from main.py
+# Client setup — called from main.py file
 # ----------------------------------------------------------
 
 def build_mqtt_client() -> mqtt_lib.Client:

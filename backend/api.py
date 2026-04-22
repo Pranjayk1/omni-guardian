@@ -107,7 +107,9 @@ def api_start_session(req: SessionStartRequest):
             "H_min": p["H_min"], "H_max": p["H_max"],
             "G_threshold": p["G_threshold"]
         })
-        client.publish(f"omni/{req.device_id}/config", sync_payload, qos=1)
+        client.publish(f"omni/{req.device_id}/config", sync_payload, qos=1, retain=False)
+        client.publish(f"omni/{req.device_id}/status", "STATUS:OK", qos=1, retain=False)
+        client.publish(f"omni/{req.device_id}/reset-tamper", "CLEAR", qos=1, retain=False)
         print(f"[SYNC] Pushed {result['session_id']} to {req.device_id}")
     return result
 
@@ -371,6 +373,7 @@ def api_reset_tamper(device_id: str):
         raise HTTPException(503, "MQTT client not connected")
 
     client.publish(f"omni/{device_id}/reset-tamper", "RESET_TAMPER", qos=1)
+    client.publish(f"omni/{device_id}/status", "STATUS:OK", qos=1, retain=False)
     return {"ok": True, "message": f"Reset command sent to {device_id}"}
 
 

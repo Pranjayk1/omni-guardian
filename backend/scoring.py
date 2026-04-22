@@ -68,14 +68,14 @@ def compute_integrity_score(
     Both maintained as running variables; O(1) to update per packet.
     """
     if count == 0:
-        return 100.0
+        return 100.00
     avg_cs = sum_cs / count
     is_score = (min_cs * 0.5) + (avg_cs * 0.5)
     return round(max(0.0, min(100.0, is_score)), 2)
 
 
 def acceptance_band(is_score: float) -> str:
-    """Return the acceptance decision label for a given IS."""
+    """Return acceptance bands for a given IS."""
     if is_score >= 90:
         return "ACCEPT"
     elif is_score >= 70:
